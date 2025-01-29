@@ -1,0 +1,5 @@
+node_modules
+data.csv
+docs/*
+.idea
+package-lock.json
