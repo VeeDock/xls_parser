@@ -22,7 +22,21 @@ try {
                     // console.log('cell', cell)
                     if (!/@\w+\.\w+/m.test(cell)) return
                     // console.log(cell.replaceAll(/\n+|\r+/g, ' '));
-                    parsedData.push(cell.replaceAll(/\n+|\r+/g, ' '));
+                    const data  = cell.replaceAll(/\n+|\r+/g, ' ')
+                    // console.log(data)
+                    const emails = (data.match(/[0-9_a-zA-Z]+[0-9.a-zA-Z-]*\s*@[0-9.a-zA-Z-\s]+[^\sА-Яа-я.]/g) || [])
+                    const phones = (data.match(/(?<!(^))[0-9+(][0-9\s()/–-]{4,}\d+/g) || [])
+                    if (!emails.length) {
+                        console.log('emails not found', data)
+                    } else {
+                        // console.log('emails', emails)
+                    }
+                    if (!phones.length) {
+                        console.log('phones not found', data)
+                    } else {
+                        // console.log('phones', phones)
+                    }
+                    parsedData.push(emails.join(';') + ";" + phones.join(';') + ';' + data);
                 })
             })
         })
